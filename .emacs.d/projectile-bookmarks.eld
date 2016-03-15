@@ -1,0 +1,1 @@
+("~/storage/.gvm/pkgsets/go1.5.1/global/src/gitlab.com/dvwallin/1spot/")
