@@ -75,3 +75,20 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet-snippets")
 (yas-global-mode t)
+
+(load-theme 'base16-solarized-light t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("f2503f0a035c2122984e90eb184185769ee665de5864edc19b339856942d2d2d" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
