@@ -76,7 +76,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'load-path "~/.emacs.d/yasnippet-snippets")
 (yas-global-mode t)
 
-(load-theme 'base16-solarized-light t)
+(load-theme 'base16-bright-dark t)
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
