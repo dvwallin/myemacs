@@ -9,7 +9,44 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 (ac-config-default)
+
+
+;; ##################################################################################
+;; HANDLING LINES - START
+;; ##################################################################################
 (global-linum-mode t)
+(require 'linum)
+(defvar linum-current-line 1 "Current line number.")
+(defvar linum-border-width 1 "Border width for linum.")
+(defface linum-current-line
+  `((t :inherit linum
+       :foreground "goldenrod"
+       :weight bold
+       ))
+  "Face for displaying the current line number."
+  :group 'linum)
+(defadvice linum-update (before advice-linum-update activate)
+  "Set the current line."
+  (setq linum-current-line (line-number-at-pos)
+        ;; It's the same algorithm that linum dynamic. I only had added one
+        ;; space in front of the first digit.
+        linum-border-width (number-to-string
+                            (+ 1 (length
+                                  (number-to-string
+                                   (count-lines (point-min) (point-max))))))))
+(defun linum-highlight-current-line (line-number)
+  "Highlight the current line number using `linum-current-line' face."
+  (let ((face (if (= line-number linum-current-line)
+                  'linum-current-line
+                'linum)))
+    (propertize (format (concat "%" linum-border-width "d  \u2502  ") line-number)
+                'face face)))
+
+(setq linum-format 'linum-highlight-current-line)
+;; ##################################################################################
+;; HANDLING LINES - END
+;; ##################################################################################
+
 (add-to-list 'load-path "/home/david/.emacs.d/neotree")
 (require 'neotree)
   (global-set-key [f2] 'neotree-toggle)
@@ -54,6 +91,7 @@ Return a list of installed packages or nil for every skipped package."
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitchb)
+
 
 
 ;; make indentation commands use space only (never tab character)
